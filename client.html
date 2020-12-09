@@ -18,11 +18,9 @@
       ];
 
       function establishConnections(remainingClients) {
-
         if (!remainingClients) {
           return;
         }
-
         /* Current value of our share */
         let value;
         let socket = new WebSocket('wss://uwebsocket-stock-trader.herokuapp.com/');

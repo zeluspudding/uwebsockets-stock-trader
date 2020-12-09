@@ -46,11 +46,13 @@ uWS.App().ws('/*', {
 			}
 		}
 	}
-}).listen(9001, (listenSocket) => {
-	if (listenSocket) {
-		console.log('Listening to port 9001');
-	}
-});
+}).listen('0.0.0.0', Number.parseInt(process.env.PORT) || 9001, (token => {
+    if (token) {
+        console.log(`listening to port ${process.env.PORT || 9001}`);
+    } else {
+        console.log('failed to listen')
+    }
+}))
 
 /* Print transactions per second */
 let last = Date.now();
