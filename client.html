@@ -2,8 +2,6 @@
 <head>
   <script>
     function main() {
-      const WebSocket = require('ws');
-
       /* By default we use 10% active traders, 90% passive watchers */
       const numClients = 125;
       const tradersFraction = 0.1;
@@ -27,8 +25,8 @@
 
         /* Current value of our share */
         let value;
-
-        let socket = new WebSocket('ws://localhost:9001');
+        let socket = new WebSocket('wss://uwebsocket-stock-trader.herokuapp.com/');
+        socket.binaryType = 'arraybuffer';
         socket.onopen = () => {
           /* Randomly select one share this client will be interested in */
           let shareOfInterest = shares[parseInt(Math.random() * shares.length)];
@@ -75,7 +73,6 @@
           process.exit();
         }
       }
-
       establishConnections(numClients);
     }
   </script>
